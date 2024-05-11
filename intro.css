@@ -1,0 +1,111 @@
+body {
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: grid;
+    height: 70vh;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 130px;
+    width: 138vh;
+    padding: 20px;
+}
+
+.box {
+    background-color: #ffffff;
+    padding: 30px; /* Increase the padding inside each box */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center the text horizontally */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+    font-size: 33px;
+    text-decoration: none; /* Remove underline */
+}
+
+.box a {
+    text-decoration: none;
+    color: #333333;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: color 0.3s ease;
+    
+}
+
+/* Adjust styles for specific boxes */
+/* Add any specific styles you need for different boxes here */
+
+
+.box:hover {
+    transform: translateY(-5px);
+}
+
+/* Adjust styles for specific boxes */
+.home {
+    background-color: #4CAF50;
+    color: #ffffff;
+}
+
+.attendance {
+    background-color: #2196F3;
+    color: #ffffff;
+}
+
+.payroll {
+    background-color: #FFC107;
+    color: #333333;
+}
+
+/* Employee box */
+.employee {
+    background-color: #9C27B0;
+    color: #ffffff;
+}
+
+/* Department box */
+.department {
+    background-color: #E91E63;
+    color: #ffffff;
+}
+
+/* Position box */
+.position {
+    background-color: #FF5722;
+    color: #ffffff;
+}
+
+/* Allowances box */
+.allowances {
+    background-color: #03A9F4;
+    color: #ffffff;
+}
+
+/* Deductions box */
+.deductions {
+    background-color: #FF9800;
+    color: #ffffff;
+}
+
+/* Users box */
+.users {
+    background-color: #795548;
+    color: #ffffff;
+    grid-column: 2;
+}
+
+/* Logout box */
+.logout {
+    background-color: #607D8B;
+    color: #ffffff;
+    grid-column: 3;
+}
