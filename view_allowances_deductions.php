@@ -26,7 +26,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['allowance_submit'])) {
-            // Process allowance form data
+         
             $employee_id= $_POST['employee_id'];
             $employee = $_POST['employee_no'];
             $allowanceId = $_POST['allowance'];
@@ -35,27 +35,27 @@
             $effectiveDate = $_POST['effective_date'];
             $dateCreated = date('Y-m-d H:i:s');
     
-            // Insert data into the database for allowances
+             
             $sqlInsert = "INSERT INTO employee_allowances (employee_id, allowance_id, type, amount, effective_date, date_created)
                           VALUES ('$employee_id', '$allowanceId', '$type', '$amount', '$effectiveDate', '$dateCreated')";
     
-            // Execute the query and handle success or error
+             
             if ($conn->query($sqlInsert) === TRUE) {
                 echo "Allowance record inserted successfully";
             } else {
                 echo "Error: " . $sqlInsert . "<br>" . $conn->error;
             }
         } elseif (isset($_POST['deduction_submit'])) {
-            // Process deduction form data
+          
             $employee_id= $_POST['employee_id'];
             $employee = $_POST['employee_no'];
             $deductionId = $_POST['deduction'];
             $typeDeduction = $_POST['type'];
             $amountDeduction = $_POST['amount'];
             $effectiveDateDeduction = $_POST['effective_date'];
-            $dateCreatedDeduction = date('Y-m-d H:i:s'); // Current date and time
+            $dateCreatedDeduction = date('Y-m-d H:i:s');  
     
-            // Insert data into the database for deductions
+           
             $sqlInsertDeduction = "INSERT INTO employee_deductions (employee_id, deduction_id, type, amount, effective_date, date_created)
                                    VALUES ('$employee_id', '$deductionId', '$typeDeduction', '$amountDeduction', '$effectiveDateDeduction', '$dateCreatedDeduction')";
     
@@ -72,7 +72,7 @@
     $employee = $_GET['employee_no'];
    
 
-    // Retrieve employee details
+ 
     $sqlEmployee = "SELECT e.*, d.name AS department_name, p.name AS position_name
                     FROM employee e
                     LEFT JOIN department d ON e.department_id = d.id
@@ -87,7 +87,7 @@
             <?php echo $employee['firstname'] . ' ' . $employee['lastname']; ?>
         </h2>
 
-        <!-- Display Employee Details -->
+        
         <p><strong>Employee ID:</strong>
             <?php echo $employee['employee_no']; ?>
         </p>
@@ -98,7 +98,7 @@
             <?php echo $employee['position_name']; ?>
         </p>
 
-        <!-- Display Allowances -->
+        
         <h3>Allowances</h3>
         <?php
         $sqlAllowances = "SELECT ea.*, a.allowance
@@ -120,7 +120,7 @@
         }
         ?>
 
-        <!-- Display Deductions -->
+        
         <h3>Deductions</h3>
         <?php
         $sqlDeductions = "SELECT ed.*, d.deduction
@@ -141,12 +141,11 @@
             echo "No deductions found.";
         }
         ?>
-
-        <!-- Add Allowance Button -->
+ 
         <button onclick="addAllowance('<?php echo $employee['employee_no']; ?>')">Add Allowance</button>
 
 
-        <!-- Add Deduction Button -->
+   
         <button onclick="addDeduction('<?php echo $employee['employee_no']; ?>')">Add Deduction</button>
 
         <button onclick="goBack()">Go Back</button>
@@ -158,30 +157,30 @@
 
             function deleteAllowance(allowanceId) {
                 if (confirm('Are you sure you want to delete this allowance?')) {
-                    // Redirect to delete_allowance.php with the allowance ID as a parameter
+                     
                     window.location.href = 'delete_allowance.php?id=' + allowanceId;
                 }
             }
 
             function deleteDeduction(deductionId) {
                 if (confirm('Are you sure you want to delete this deduction?')) {
-                    // Redirect to delete_deduction.php with the deduction ID as a parameter
+                  
                     window.location.href = 'delete_deduction.php?id=' + deductionId;
                 }
             }
 
             function addAllowance(employee) {
-    // Log the employee number to the console
+    
     console.log("Adding allowance for employee number:", employee);
 
-    // Redirect to a page where allowances and deductions can be selected for the specific employee
+ 
     window.location.href = 'add_allowances.php?employee_no=' + employee;
 }
 
             function addDeduction(employee) {
-                // Log the employee number to the console
+             
     console.log("Adding allowance for employee number:", employee);
-                // Redirect to a page to add a new deduction for the employee
+                
                 window.location.href = 'add_deduction.php?employee_no=' + employee;
             }
         </script>
