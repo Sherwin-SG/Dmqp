@@ -42,16 +42,16 @@ $password = "123";
 $database = "payroll";
 $conn = new mysqli($servername, $username, $password, $database);
 
-// Check if the form is submitted to add a deduction
+ 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_deduction"])) {
-    // Get form data
+    
     $deduction = isset($_POST["deduction_info"]) ? $_POST["deduction_info"] : '';
 
     if (!empty($deduction)) {
-        // Insert data into the 'deductions' table
+        
         $insert_query = "INSERT INTO deductions (deduction, description) VALUES ('$deduction', '$deduction')";
 
-        // Execute the query
+         
         if ($conn->query($insert_query) === TRUE) {
             echo "Deduction added successfully.";
         } else {
@@ -62,11 +62,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_deduction"])) {
     }
 }
 
-    // Check if a deduction deletion request is submitted
+     
     if (isset($_GET['delete'])) {
         $deleteId = $_GET['delete'];
 
-        // Perform the deletion
+         
         $delete_query = "DELETE FROM deductions WHERE id = '$deleteId'";
         if ($conn->query($delete_query) === TRUE) {
             echo "Deduction deleted successfully.";
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_deduction"])) {
         }
     }
 
-    // Display deductions in the 'deductions' table
+     
     $select_query = "SELECT * FROM deductions";
     $result = $conn->query($select_query);
 
@@ -114,10 +114,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_deduction"])) {
 
     <script>
         function deleteDeduction(Id) {
-            // Ask for confirmation before deleting
+             
             var confirmDelete = confirm("Are you sure you want to delete this deduction?");
             if (confirmDelete) {
-                // Redirect to deductions.php with the delete parameter
+                
                 window.location.href = "deductions.php?delete=" + Id;
             }
         }
