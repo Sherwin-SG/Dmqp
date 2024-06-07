@@ -1,5 +1,5 @@
 
-/* Navigation Styles */
+ 
 .navbar-container {
     display: flex;
     justify-content: space-between;
@@ -13,9 +13,9 @@
     cursor: pointer;
     color: #fff;
     font-size: 24px;
-    background: none; /* Remove background */
-    border: none; /* Remove border */
-    padding: 5px; /* Add padding for better spacing */
+    background: none;  
+    border: none; 
+    padding: 5px;  
 }
 
 .sidebar {
@@ -75,28 +75,28 @@ button:hover {
     background-color: #45a049;
 }
 .bars, .cross {
-    display: inline-block; /* Change display to inline-block */
+    display: inline-block;  
     width: 24px;
     height: 24px;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-/* Additional styling for the cross button */
+ 
 .cross {
-    display: none; /* Initially hide the cross button */
+    display: none;  
 }
 
 .bars {
-    background-image: url('bars.svg'); /* Path to your bars icon image */
+    background-image: url('bars.svg');  
 }
 
 .cross {
-    background-image: url('cross.svg'); /* Path to your cross icon image */
+    background-image: url('cross.svg'); 
 }
 
 
-/* Global Styles */
+ 
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -114,8 +114,7 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #333333;
-}
-/* Main Content Styles */
+} 
 .main {
     padding: 20px;
     background-color: #fff;
