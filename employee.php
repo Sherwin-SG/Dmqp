@@ -43,7 +43,7 @@ $password = "123";
 $database = "payroll";
 $conn = new mysqli($servername, $username, $password, $database);
 
-// Check connection
+ 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -55,7 +55,7 @@ $sql = "SELECT e.*, d.name AS department_name, p.name AS position_name
 
 $result = $conn->query($sql);
 
-// Check if the query was successful
+ 
 if ($result === false) {
     die("Error executing the query: " . $conn->error);
 }
@@ -103,17 +103,17 @@ if ($result === false) {
     <script src="js/index.js"></script>
 
     <script>
-        // JavaScript function to handle employee deletion
+        
         function deleteEmployee(employeeNo) {
             if (confirm('Are you sure you want to delete this employee?')) {
-                // Redirect to delete_employee.php with the employee number as a parameter
+                 
                 window.location.href = 'delete_employee.php?employee_no=' + employeeNo;
             }
         }
         function selectAllowancesDeductions(employee) {
-            // Log the employee number to the console
+             
     console.log("Adding   for employee number:", employee);
-        // Redirect to a page where allowances and deductions can be selected for the specific employee
+         
         window.location.href = 'view_allowances_deductions.php?employee_no=' + employee;
     }
     </script>
