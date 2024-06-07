@@ -46,20 +46,20 @@
         $database = "payroll";
         $conn = new mysqli($servername, $username, $password, $database);
 
-        // Check connection
+         
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-// Check if a status update request is submitted
+ 
 if (isset($_GET['calculate'])) {
     $refNo = $_GET['calculate'];
 
-    // Perform the status update
+    
     $update_query = "UPDATE payroll SET status = 1 WHERE ref_no = '$refNo'";
     if ($conn->query($update_query) === TRUE) {
         echo "Payroll status updated to Completed.";
         header("Location: payrolllist.php");
-        exit(); // Ensure that no other code is executed after the redirect
+        exit();  
     } else {
         echo "Error updating payroll status: " . $conn->error;
     }
@@ -78,7 +78,7 @@ if (isset($_GET['calculate'])) {
                         </tr>";
 
             while ($row = $payroll_result->fetch_assoc()) {
-                $status = ($row["status"] == 1) ? "Calculated" : "New"; // Change "Old" to the appropriate status for 0
+                $status = ($row["status"] == 1) ? "Calculated" : "New";  
                 echo "<tr data-ref-no='" . $row["ref_no"] . "'>
             <td>" . $row["ref_no"] . "</td>
             <td>" . $row["date_from"] . "</td>
@@ -97,8 +97,7 @@ if (isset($_GET['calculate'])) {
             echo "</table>";
         } else {
             echo "No payroll entries found.";
-        }
-        // Check if a deduction deletion request is submitted
+        } 
         if (isset($_GET['delete'])) {
             $deleteId = $_GET['delete'];
 
@@ -107,7 +106,7 @@ if (isset($_GET['calculate'])) {
             if ($conn->query($delete_query) === TRUE) {
                 echo "payroll deleted successfully.";
                 header("Location: payrolllist.php");
-                exit(); // Ensure that no other code is executed after the redirect
+                exit(); 
             } else {
                 echo "Error deleting payroll: " . $conn->error;
             }
@@ -119,26 +118,25 @@ if (isset($_GET['calculate'])) {
     </div>
     <script>
         function deleteDeduction(Id) {
-            // Ask for confirmation before deleting
+          
             var confirmDelete = confirm("Are you sure you want to delete this deduction?");
             if (confirmDelete) {
-                // Redirect to deductions.php with the delete parameter
+               
                 window.location.href = "payrollList.php?delete=" + Id;
             }
 
         }
 
         function calculate(refNo) {
-    // Redirect to call.php with the ref_no parameter
+ 
     window.location.href = "call.php?ref_no=" + refNo;
 }
 function show(refNo) {
-    // Redirect to call.php with the ref_no parameter
+    
     window.location.href = "payroll_items.php?ref_no=" + refNo;
 }
 
-function slip(refNo) {
-    // Redirect to call.php with the ref_no parameter
+function slip(refNo) { 
     window.location.href = "slip.php?ref_no=" + refNo;
 }
 
