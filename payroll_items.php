@@ -9,11 +9,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Assuming you have collected the data through a form or some other means
+ 
 if (isset($_GET['ref_no'])) {
     $ref_no = $_GET['ref_no'];
 
-    // Retrieve id from the payroll table using ref_no
+   
     $get_id_query = "SELECT id FROM payroll WHERE ref_no = ?";
     $stmt_id = $conn->prepare($get_id_query);
     $stmt_id->bind_param("s", $ref_no);
@@ -26,7 +26,7 @@ if (isset($_GET['ref_no'])) {
         $row_id = $result_id->fetch_assoc();
         $payroll_id = $row_id['id'];
 
-        // Continue with the rest of your code...
+       
     } else {
         echo "Payroll not found for the given ref_no.";
     }
@@ -58,7 +58,7 @@ if (isset($_GET['ref_no'])) {
 
             $stmt_salary->close();
 
-            // Retrieve and sum up allowance amounts and types from the employee_allowances table
+            
             $get_allowance_query = "SELECT type, SUM(amount) AS total_allowance FROM employee_allowances WHERE employee_id = ? GROUP BY type";
             $stmt_allowance = $conn->prepare($get_allowance_query);
             $stmt_allowance->bind_param("s", $employee_id);
@@ -74,7 +74,7 @@ if (isset($_GET['ref_no'])) {
 
             $stmt_allowance->close();
 
-            // Retrieve and sum up deduction amounts and types from the employee_deductions table
+            
             $get_deduction_query = "SELECT type, SUM(amount) AS total_deduction FROM employee_deductions WHERE employee_id = ? GROUP BY type";
             $stmt_deduction = $conn->prepare($get_deduction_query);
             $stmt_deduction->bind_param("s", $employee_id);
@@ -90,14 +90,14 @@ if (isset($_GET['ref_no'])) {
 
             $stmt_deduction->close();
 
- // Calculate net based on your formula
+ 
 $net = $salary + array_sum($allowances) - array_sum($deductions);
 
-// Convert arrays to JSON
+ 
 $json_allowances = json_encode($allowances);
 $json_deductions = json_encode($deductions);
 
-// Insert data into the payroll_items table
+ 
 $insert_query = "INSERT INTO payroll_items (payroll_id, employee_id, salary, allowance_amount, allowances, deduction_amount, deductions, net, date_created) 
                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
@@ -115,9 +115,9 @@ $stmt_insert->close();
             echo "Employee not found in the payroll table for the given payroll_id.";
         }
 
-        // Redirect to another page after successful record insertion
+         
         header("Location: payrollList.php");
-        exit(); // Make sure to exit to prevent further script execution
+        exit();  
     }
 } else {
     echo "Error: \$ref_no is not set.";
