@@ -43,15 +43,15 @@
     $database = "payroll";
     $conn = new mysqli($servername, $username, $password, $database);
 
-    // Check if the form is submitted
+     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Get form data
+         
         $Name = $_POST["department_name"];
 
-        // Insert data into the database
+         
         $insert_query = "INSERT INTO department (name) VALUES ('$Name')";
 
-        // Execute the query
+         
         if ($conn->query($insert_query) === TRUE) {
             echo "Department added successfully.";
         } else {
@@ -59,11 +59,11 @@
         }
     }
 
-    // Check if a department deletion request is submitted
+     
     if (isset($_GET['delete'])) {
         $deleteId = $_GET['delete'];
 
-        // Perform the deletion
+         
         $delete_query = "DELETE FROM department WHERE id = '$deleteId'";
         if ($conn->query($delete_query) === TRUE) {
             echo "Department deleted successfully.";
@@ -72,7 +72,7 @@
         }
     }
 
-    // Display departments in the database
+     
     $select_query = "SELECT * FROM department";
     $result = $conn->query($select_query);
 
@@ -100,7 +100,7 @@
         echo "<p>No departments in the database.</p>";
     }
 
-    // Close the database connection
+     
     $conn->close();
     ?>
 
@@ -112,11 +112,11 @@
 
     <script>
         function deleteDepartment(Id) {
-            // Ask for confirmation before deleting
+             
             var confirmDelete = confirm("Are you sure you want to delete this department?");
             
             if (confirmDelete) {
-                // Redirect to department.php with the delete parameter
+                 
                 window.location.href = "department.php?delete=" + Id;
             }
         }
