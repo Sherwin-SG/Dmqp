@@ -22,7 +22,7 @@
 </head>
 <?php
 
-// select_allowances_deductions.php
+ 
 
 $employee = $_GET['employee_no'];
 
@@ -36,7 +36,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Retrieve employee details
+ 
 $sqlEmployee = "SELECT e.*, d.name AS department_name, p.name AS position_name
                 FROM employee e
                 LEFT JOIN department d ON e.department_id = d.id
@@ -62,8 +62,7 @@ if ($resultEmployee->num_rows > 0) {
         <h2>Select Allowance for
             <?php echo $employee['firstname'] . ' ' . $employee['lastname']; ?>
         </h2>
-
-        <!-- Display Employee Details -->
+ 
         <p><strong>Employee ID:</strong>
             <?php echo $employee['employee_no']; ?>
         </p>
@@ -77,7 +76,7 @@ if ($resultEmployee->num_rows > 0) {
         <form action="view_allowances_deductions.php?employee_no=<?php echo $employee['employee_no']; ?>&employee_id=<?php echo $employee['id']; ?>" method="post">
 
 
-    <!-- Additional Information for Allowances -->
+ 
     <label for="type">Type:</label>
     <select name="type" class="dropdown">
         <option value="1">Monthly</option>
@@ -94,7 +93,7 @@ if ($resultEmployee->num_rows > 0) {
     <input type="date" name="effective_date">
     <br>
 
-    <!-- Allowances Selection -->
+   
     <label for="allowance">Select Allowance:</label>
     <select name="allowance">
         <?php
@@ -115,11 +114,11 @@ if ($resultEmployee->num_rows > 0) {
     </select>
     <br>
 
-    <!-- Hidden Fields for Employee Information -->
+ 
     <input type="hidden" name="employee_no" value="<?php echo $employee['employee_no']; ?>">
     <input type="hidden" name="employee_id" value="<?php echo $employee['id']; ?>">
 
-    <!-- Submit Button -->
+ 
     <input type="submit" name="allowance_submit" value="Submit Allowance">
 </form>       
 
