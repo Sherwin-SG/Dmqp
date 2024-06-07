@@ -44,22 +44,22 @@
     <div id="payrollInfo">
 <?php
 
-// Assuming you have a database connection
+ 
 $servername = "localhost";
 $username = "admin";
 $password = "123";
 $database = "payroll";
 $conn = new mysqli($servername, $username, $password, $database);
 
-// Check the connection
+ 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get ref_no from the URL
+ 
 $ref_no = $_GET['ref_no'];
 
-// Query the payroll table to get the id and additional information
+ 
 $id_query = "SELECT id, date_from, date_to, type FROM payroll WHERE ref_no = ?";
 $id_stmt = $conn->prepare($id_query);
 $id_stmt->bind_param("s", $ref_no);
@@ -67,7 +67,7 @@ $id_stmt->execute();
 $id_result = $id_stmt->get_result();
 
 if ($id_result->num_rows > 0) {
-    // Fetch the id and additional information
+    
     $row = $id_result->fetch_assoc();
     $id = $row['id'];
     $date_from = $row['date_from'];
@@ -79,7 +79,7 @@ if ($id_result->num_rows > 0) {
     echo "Date To: " . $date_to . "<br>";
     echo "Type: " . $type . "<br>";
 
-    // Use the id to retrieve payroll_items
+    
     $items_query = "SELECT * FROM payroll_items WHERE payroll_id = ?";
     $items_stmt = $conn->prepare($items_query);
     $items_stmt->bind_param("i", $id);
@@ -87,7 +87,7 @@ if ($id_result->num_rows > 0) {
     $items_result = $items_stmt->get_result();
 
     if ($items_result->num_rows > 0) {
-        // Fetch and display payroll_items
+         
         while ($items_row = $items_result->fetch_assoc()) {
             echo "Payroll ID: " . $items_row['payroll_id'] . "<br>";
             echo "Employee ID: " . $items_row['employee_id'] . "<br>";
@@ -105,7 +105,7 @@ if ($id_result->num_rows > 0) {
     echo "Invalid ref_no.";
 }
 
-// Close connections
+ 
 $id_stmt->close();
 $items_stmt->close();
 $conn->close();
