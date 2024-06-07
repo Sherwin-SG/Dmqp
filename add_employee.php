@@ -6,12 +6,12 @@ $password = "123";
 $database = "payroll";
 $conn = new mysqli($servername, $username, $password, $database);
 
-// Check connection
+ 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch department options
+ 
 $departmentOptions = "";
 $departmentQuery = "SELECT id, name FROM department";
 $departmentResult = $conn->query($departmentQuery);
@@ -22,7 +22,7 @@ if ($departmentResult->num_rows > 0) {
     }
 }
 
-// Fetch position options
+ 
 $positionOptions = "";
 $positionQuery = "SELECT id, name FROM position";
 $positionResult = $conn->query($positionQuery);
@@ -34,9 +34,9 @@ if ($positionResult->num_rows > 0) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Form was submitted, process the data
+     
 
-    // Collect form data
+    
     $firstname = $_POST['firstname'];
     $middlename = $_POST['middlename'];
     $lastname = $_POST['lastname'];
@@ -44,17 +44,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $position_id = $_POST['position_id'];
     $salary = $_POST['salary'];
 
-    // Generate a random but unique employee number
+     
     $employee_no = generateUniqueEmployeeNumber();
 
-    // Insert new employee into the database
+     
     $sql = "INSERT INTO employee (employee_no, firstname, middlename, lastname, department_id, position_id, salary) 
             VALUES ('$employee_no', '$firstname', '$middlename', '$lastname', '$department_id', '$position_id', '$salary')";
 
     if ($conn->query($sql) === TRUE) {
         echo "New employee added successfully";
 
-        // Redirect to employee.php after successful insertion
+         
         header("Location: employee.php");
         exit();
     } else {
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn->close();
 } else {
-    // Display the form
+    
 
     echo "
     <!DOCTYPE html>
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </html>";
 }
 
-// Function to generate a random but unique employee number
+ 
 function generateUniqueEmployeeNumber() {
     $uniqueId = uniqid('employee_no', true);
     return mt_rand(100000, 999999);
