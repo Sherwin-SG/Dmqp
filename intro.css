@@ -21,15 +21,15 @@ body {
 
 .box {
     background-color: #ffffff;
-    padding: 30px; /* Increase the padding inside each box */
+    padding: 30px;  
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center the text horizontally */
+    text-align: center; 
     cursor: pointer;
     transition: transform 0.3s ease;
     position: relative;
     font-size: 33px;
-    text-decoration: none; /* Remove underline */
+    text-decoration: none;  
 }
 
 .box a {
@@ -42,15 +42,14 @@ body {
     
 }
 
-/* Adjust styles for specific boxes */
-/* Add any specific styles you need for different boxes here */
+ 
 
 
 .box:hover {
     transform: translateY(-5px);
 }
 
-/* Adjust styles for specific boxes */
+ 
 .home {
     background-color: #4CAF50;
     color: #ffffff;
