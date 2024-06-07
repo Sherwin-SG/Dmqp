@@ -41,17 +41,17 @@
     $database = "payroll";
     $conn = new mysqli($servername, $username, $password, $database);
 
-   // Check if the form is submitted to add a position
+    
    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_position"])) {
-    // Get form data
+     
     $departmentId = isset($_POST["department_id"]) ? $_POST["department_id"] : '';
     $positionName = isset($_POST["position_name_entry"]) ? $_POST["position_name_entry"] : '';
 
     if (!empty($departmentId) && !empty($positionName)) {
-        // Insert data into the 'position' table
+        
         $insert_query = "INSERT INTO position (department_id, name) VALUES ('$departmentId', '$positionName')";
 
-        // Execute the query
+       
         if ($conn->query($insert_query) === TRUE) {
             echo "Position added successfully.";
         } else {
@@ -63,7 +63,7 @@
 }
 
 
-    // Fetch department names for the dropdown menu
+     
     $department_query = "SELECT * FROM department";
     $department_result = $conn->query($department_query);
     $departments = [];
@@ -72,11 +72,11 @@
         $departments[] = $department_row;
     }
 
-    // Check if a position deletion request is submitted
+   
     if (isset($_GET['delete'])) {
         $deleteId = $_GET['delete'];
 
-        // Perform the deletion
+        
         $delete_query = "DELETE FROM position WHERE id = '$deleteId'";
         if ($conn->query($delete_query) === TRUE) {
             echo "Position deleted successfully.";
@@ -85,7 +85,7 @@
         }
     }
 
-    // Display positions in the 'position' table
+    
     $select_query = "SELECT * FROM position";
     $result = $conn->query($select_query);
 
@@ -133,10 +133,10 @@
 
     <script>
     function deletePosition(Id) {
-        // Ask for confirmation before deleting
+         
         var confirmDelete = confirm("Are you sure you want to delete this position?");
         if (confirmDelete) {
-            // Redirect to position.php with the delete parameter
+            
             window.location.href = "position.php?delete=" + Id;
         }
     }
