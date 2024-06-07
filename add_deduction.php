@@ -25,7 +25,7 @@ $employee = $_GET['employee_no'] ?? '';
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Retrieve employee details
+  
     $sqlEmployee = "SELECT e.*, d.name AS department_name, p.name AS position_name
                     FROM employee e
                     LEFT JOIN department d ON e.department_id = d.id
@@ -41,7 +41,7 @@ $employee = $_GET['employee_no'] ?? '';
             <?php echo $employee['firstname'] . ' ' . $employee['lastname']; ?>
         </h2>
 
-        <!-- Display Employee Details -->
+      
         <p><strong>Employee ID:</strong>
             <?php echo $employee['employee_no']; ?>
         </p>
@@ -70,8 +70,7 @@ $employee = $_GET['employee_no'] ?? '';
     <input type="date" name="effective_date">
     <br>
 
-
-            <!-- Deductions Selection -->
+ 
             <label for="deduction">Select Deduction:</label>
             <select name="deduction">
                 <?php
@@ -92,11 +91,11 @@ $employee = $_GET['employee_no'] ?? '';
             </select>
             <br>
 
-            <!-- Hidden Fields for Employee Information -->
+           
             <input type="hidden" name="employee_no" value="<?php echo $employee['employee_no']; ?>">
             <input type="hidden" name="employee_id" value="<?php echo $employee['id']; ?>">
 
-            <!-- Submit Button -->
+             
             <input type="submit" name="deduction_submit" value="Submit Deduction">
         </form>
 
