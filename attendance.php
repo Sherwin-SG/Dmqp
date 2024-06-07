@@ -55,7 +55,7 @@
                 echo "Error deleting entry: " . $conn->error;
             }
         } else {
-            // Handle add entry request
+             
             $id = $_POST["emp_id"];
             $entry_type = $_POST["entry_type"];
             $datetime_log = $_POST["datetime_log"];
