@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Payroll Entry</title>
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Add your CSS stylesheets if needed -->
+    
 </head>
 
 <body>
@@ -42,39 +42,39 @@
     <h1>Add Payroll Entry</h1>
 
     <?php
-    // Define database connection variables
+    
     $servername = "localhost";
     $username = "admin";
     $password = "123";
     $database = "payroll";
 
-    // Process the form submission
+     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn = new mysqli($servername, $username, $password, $database);
 
-        // Check connection
+         
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Get form data
+         
         $employee_id = $_POST["employee_id"];
         $date_from = $_POST["date_from"];
         $date_to = $_POST["date_to"];
         $type = $_POST["type"];
-        $status = "New"; // Default status
-        $date_created = date("Y-m-d H:i:s"); // Current date and time
+        $status = "New";  
+        $date_created = date("Y-m-d H:i:s");  
 
-        // Insert data into the database
+        
         $insert_query = "INSERT INTO payroll (ref_no, date_from, date_to, type, status, date_created)
                         VALUES ('$employee_id', '$date_from', '$date_to', '$type', '$status', '$date_created')";
 
         if ($conn->query($insert_query) === TRUE) {
             echo "Payroll entry added successfully!";
             
-            // Redirect to payrolllist.php after successful entry
+            
             header("Location: payrolllist.php");
-            exit(); // Ensure that no other code is executed after the redirect
+            exit();  
         } else {
             echo "Error: " . $insert_query . "<br>" . $conn->error;
         }
@@ -83,12 +83,12 @@
     }
     ?>
 
-    <!-- Form for adding payroll entry -->
+     
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for="employee_id">Employee:</label>
-        <!-- Fetch employee numbers and names from the database -->
+        
         <?php
-        $conn = new mysqli($servername, $username, $password, $database); // Re-establish the connection
+        $conn = new mysqli($servername, $username, $password, $database);  
         $employee_query = "SELECT employee_no, firstname FROM employee";
         $employee_result = $conn->query($employee_query);
         ?>
@@ -113,7 +113,7 @@
         <option value="2">Semi-Monthly</option>
     </select><br>
 
-        <!-- Add other form fields as needed -->
+         
 
         <input type="submit" value="Add Payroll Entry">
     </form>
